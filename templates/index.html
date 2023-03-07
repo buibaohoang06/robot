@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+<div id="currentStat" class="container text-center mt-3">
+    <h3>Current Statistics</h3>
+    <div id="statContainer" class="d-flex justify-content-center align-items-center text-start">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <script>
+        setInterval(function () {
+            fetch('http://127.0.0.1:5000/getCurrentStat')
+            .then(jsonObj => jsonObj.json())
+            .then(data => {
+                let container = document.getElementById('statContainer');
+                container.innerHTML = `
+                    <div>
+                        <p><b>Current Temperature</b>: ${data.temp}</p>
+                        <p><b>Current Humidity</b>: ${data.humid}</p>
+                        <p><b>Current Dirt Humidity</b>: ${data.dirt_humid}</p>
+                        <p><b>Last Updated</b>: ${data.time}</p>    
+                    </div>
+                `
+            })
+        }, 3000);
+    </script>
+</div>
+{% endblock %}

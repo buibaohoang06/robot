@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+<div id="menuDashboard" class="container p-3">
+    <h3>Upload a Menu</h3>
+    <form action="/menuDashboard" method="POST" enctype="multipart/form-data">
+        {{ ckeditor.load() }}
+        {{ form.csrf_token() }}
+        <div class="form-group">
+            {{ form.title(class_="form-control mb-3") }}
+        </div>
+        {{ form.content }}
+        <div class="form-group mt-3">
+            <p>Menu Thumbnail</p>
+            {{ form.thumbnail }}
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+</div>
+{% endblock %}

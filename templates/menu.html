@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center">
+    {% for item in menu %}
+    <div class="card" style="width: 18rem;">
+        <img src="/static/thumbnails/{{ item.uuid }}.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <a href="/menu?item={{ item.uuid }}" class="btn btn-primary">Check it out</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
